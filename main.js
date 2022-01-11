@@ -114,7 +114,8 @@ function creaPost(array){
         `; 
 
 
-        } else{
+        } else {
+
             container.innerHTML += 
             `
             <div class="post" id="post-${i+1}">
