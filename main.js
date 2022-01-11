@@ -171,17 +171,17 @@ let likeButtons_liked = document.querySelectorAll(".like-button--liked");
 for (let i = 0; i < likeButtons.length; i++) {
     likeButtons[i].addEventListener("click",function(){
 
-        this.classList.add("like-button--liked");
 
-        document.getElementById("like-counter-"+i).innerHTML = posts[i].likes+1;
-        /*for (let i = 0; i < likeButtons_liked.length; i++) {
-    
-            likeButtons_liked.addEventListener("click",function(){
         
-                likeButtons.classList.remove("like-button--liked");
-        
-            });
-        }*/
+        if (this.classList.contains("like-button--liked")) {
+            this.classList.remove("like-button--liked");
+
+            document.getElementById("like-counter-"+i).innerHTML = posts[i].likes;
+        } else{
+            this.classList.add("like-button--liked");
+
+            document.getElementById("like-counter-"+i).innerHTML = posts[i].likes+1;
+        }
     });
 }
 
