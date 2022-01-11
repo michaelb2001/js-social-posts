@@ -114,45 +114,47 @@ function creaPost(array){
         `; 
 
 
+        } else{
+            container.innerHTML += 
+            `
+            <div class="post" id="post-${i+1}">
+                <div class="post__header">
+                    <div class="post-meta">                    
+                        <div class="post-meta__icon">
+                            <img class="profile-pic" src=${array[i].author.image} alt="${array[i].author.name}">                    
+                        </div>
+                        <div class="post-meta__data">
+                            <div class="post-meta__author">${array[i].author.name}</div>
+                            <div class="post-meta__time">${dataItaliana(array[i])}</div>
+                        </div>                    
+                    </div>
+                </div>
+                <div class="post__text">${array[i].content}</div>
+                <div class="post__image">
+                    <img src=${array[i].media} alt="">
+                </div>
+                <div class="post__footer">
+                    <div class="likes js-likes">
+                        <div class="likes__cta">
+                            <a class="like-button  js-like-button" href="#" data-postid="1">
+                                <i class="like-button__icon fas fa-thumbs-up" aria-hidden="true"></i>
+                                <span class="like-button__label">Mi Piace</span>
+                            </a>
+                        </div>
+                        <div class="likes__counter">
+                            Piace a <b id="like-counter-${i}" class="js-likes-counter">${array[i].likes}</b> persone
+                        </div>
+                    </div> 
+                </div>            
+            </div>
+    
+    
+            `; 
+    
+    
         }
 
-        container.innerHTML += 
-        `
-        <div class="post" id="post-${i+1}">
-            <div class="post__header">
-                <div class="post-meta">                    
-                    <div class="post-meta__icon">
-                        <img class="profile-pic" src=${array[i].author.image} alt="${array[i].author.name}">                    
-                    </div>
-                    <div class="post-meta__data">
-                        <div class="post-meta__author">${array[i].author.name}</div>
-                        <div class="post-meta__time">${dataItaliana(array[i])}</div>
-                    </div>                    
-                </div>
-            </div>
-            <div class="post__text">${array[i].content}</div>
-            <div class="post__image">
-                <img src=${array[i].media} alt="">
-            </div>
-            <div class="post__footer">
-                <div class="likes js-likes">
-                    <div class="likes__cta">
-                        <a class="like-button  js-like-button" href="#" data-postid="1">
-                            <i class="like-button__icon fas fa-thumbs-up" aria-hidden="true"></i>
-                            <span class="like-button__label">Mi Piace</span>
-                        </a>
-                    </div>
-                    <div class="likes__counter">
-                        Piace a <b id="like-counter-${i}" class="js-likes-counter">${array[i].likes}</b> persone
-                    </div>
-                </div> 
-            </div>            
-        </div>
-
-
-        `; 
-
-
+        
     }
 
 
