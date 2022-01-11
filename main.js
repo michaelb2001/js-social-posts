@@ -61,24 +61,33 @@ function dataAmericana(Obj){
     let str = arrayData[1]+"-"+arrayData[2]+"-"+arrayData[0];
     return str
 }
+
+function dataItaliana(Obj){
+    let arrayData = Obj.created.split("-");
+    let str = arrayData[2]+"-"+arrayData[1]+"-"+arrayData[0];
+    return str
+}
 function creaPost(array){
     let container = document.getElementById("container");
     for (let i = 0; i < array.length; i++) {
 
         
-
-
-        container.innerHTML += 
+        if(array[i].author.image == null){
+            let nomeEcognome = array[i].author.name.split(" ");
+            array[i].author.image = `${nomeEcognome[0].charAt(0)}${nomeEcognome[1].charAt(0)}`;
+            container.innerHTML += 
         `
         <div class="post" id="post-${i+1}">
             <div class="post__header">
                 <div class="post-meta">                    
                     <div class="post-meta__icon">
-                        <img class="profile-pic" src=${array[i].author.image} alt="${array[i].author.name}">                    
+                        <div class="profile-pic-default">
+                            <span>${ array[i].author.image }</span>
+                        </div>                     
                     </div>
                     <div class="post-meta__data">
                         <div class="post-meta__author">${array[i].author.name}</div>
-                        <div class="post-meta__time">${dataAmericana(array[i])}</div>
+                        <div class="post-meta__time">${dataItaliana(array[i])}</div>
                     </div>                    
                 </div>
             </div>
@@ -103,6 +112,47 @@ function creaPost(array){
 
 
         `; 
+
+
+        }
+
+        container.innerHTML += 
+        `
+        <div class="post" id="post-${i+1}">
+            <div class="post__header">
+                <div class="post-meta">                    
+                    <div class="post-meta__icon">
+                        <img class="profile-pic" src=${array[i].author.image} alt="${array[i].author.name}">                    
+                    </div>
+                    <div class="post-meta__data">
+                        <div class="post-meta__author">${array[i].author.name}</div>
+                        <div class="post-meta__time">${dataItaliana(array[i])}</div>
+                    </div>                    
+                </div>
+            </div>
+            <div class="post__text">${array[i].content}</div>
+            <div class="post__image">
+                <img src=${array[i].media} alt="">
+            </div>
+            <div class="post__footer">
+                <div class="likes js-likes">
+                    <div class="likes__cta">
+                        <a class="like-button  js-like-button" href="#" data-postid="1">
+                            <i class="like-button__icon fas fa-thumbs-up" aria-hidden="true"></i>
+                            <span class="like-button__label">Mi Piace</span>
+                        </a>
+                    </div>
+                    <div class="likes__counter">
+                        Piace a <b id="like-counter-${i}" class="js-likes-counter">${array[i].likes}</b> persone
+                    </div>
+                </div> 
+            </div>            
+        </div>
+
+
+        `; 
+
+
     }
 
 
@@ -130,17 +180,6 @@ for (let i = 0; i < likeButtons.length; i++) {
             });
         }*/
     });
-
-    for (let i = 0; i < likeButtons_liked.length; i++) {
-        
-        likeButtons_liked[i].addEventListener("click",function(){
-
-            this.classList.remove("like-button--liked");
-            document.getElementById("like-counter-"+i).innerHTML = posts[i].likes-1;
-        });
-    }
-
-
 }
 
 
