@@ -75,15 +75,19 @@ function creaPost(array){
         
         if(array[i].author.image == null){
             let nomeEcognome = array[i].author.name.split(" ");
-            array[i].author.image = `${nomeEcognome[0].charAt(0)}${nomeEcognome[1].charAt(0)}`;
-            container.innerHTML += 
-        `
+            console.log(nomeEcognome);
+            let iniziali = "";
+            for (let i = 0; i < nomeEcognome.length; i++) {
+                iniziali += nomeEcognome[i][0];
+            }
+           
+        container.innerHTML +=   `
         <div class="post" id="post-${i+1}">
             <div class="post__header">
                 <div class="post-meta">                    
                     <div class="post-meta__icon">
                         <div class="profile-pic-default">
-                            <span>${ array[i].author.image }</span>
+                            <span>${iniziali}</span>
                         </div>                     
                     </div>
                     <div class="post-meta__data">
