@@ -67,6 +67,7 @@ function dataItaliana(Obj){
     let str = arrayData[2]+"-"+arrayData[1]+"-"+arrayData[0];
     return str
 }
+
 function creaPost(array){
     let container = document.getElementById("container");
     for (let i = 0; i < array.length; i++) {
@@ -169,15 +170,17 @@ let likeButtons = document.querySelectorAll(".js-like-button");
 let likeButtons_liked = document.querySelectorAll(".like-button--liked");
 
 for (let i = 0; i < likeButtons.length; i++) {
-    likeButtons[i].addEventListener("click",function(){
-
+    likeButtons[i].addEventListener("click",function(e){
+        e.preventDefault();
 
         
         if (this.classList.contains("like-button--liked")) {
             this.classList.remove("like-button--liked");
 
             document.getElementById("like-counter-"+i).innerHTML = posts[i].likes;
+
         } else{
+            
             this.classList.add("like-button--liked");
 
             document.getElementById("like-counter-"+i).innerHTML = posts[i].likes+1;
